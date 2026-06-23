@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import Login from "./pages/Login";
+import Register from "./pages/Register"; // 1. Tambahkan import Register di sini
 import AdminDashboard from "./pages/AdminDashboard";
 import MahasiswaDashboard from "./pages/MahasiswaDashboard";
 import DosenDashboard from "./pages/DosenDashboard";
@@ -17,6 +18,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        
+        {/* 2. Tambahkan route untuk halaman registrasi */}
+        <Route path="/register" element={<Register />} /> 
+        
         <Route
           path="/dashboard/admin"
           element={
