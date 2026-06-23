@@ -1,6 +1,13 @@
-﻿import Navbar from "../components/navbar";
+﻿import { useState } from "react";
+import Navbar from "../components/navbar";
 
 export default function Analisis() {
+  // Membuat state untuk menyimpan panjang digit password (default: 6)
+  const [digit, setDigit] = useState(6);
+
+  // Menghitung total kombinasi secara dinamis (10 pangkat digit)
+  const totalKombinasi = Math.pow(10, digit);
+
   return (
     <div className="app-shell">
       <div className="page">
@@ -22,9 +29,31 @@ export default function Analisis() {
             <p>S = {'{Aktif, Tidak Aktif}'}</p>
           </section>
 
+          {/* Bagian Kombinatorika Password yang Diubah */}
           <section className="section-block">
-            <h2>Kombinatorika OTP</h2>
-            <p>10⁶ = 1.000.000 kombinasi</p>
+            <h2>Kombinatorika Password</h2>
+            <div style={{ marginBottom: "12px", display: "flex", gap: "8px", alignItems: "center" }}>
+              <label htmlFor="digit-input">Jumlah Digit Password:</label>
+              <input
+                id="digit-input"
+                type="number"
+                min="1"
+                max="15" 
+                value={digit}
+                onChange={(e) => setDigit(Number(e.target.value))}
+                style={{
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  border: "1px solid #ccc",
+                  width: "60px",
+                  backgroundColor: "transparent",
+                  color: "inherit"
+                }}
+              />
+            </div>
+            <p>
+              10<sup>{digit}</sup> = {totalKombinasi.toLocaleString('id-ID')} kombinasi
+            </p>
           </section>
 
           <section className="section-block">
