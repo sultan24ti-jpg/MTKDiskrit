@@ -30,8 +30,8 @@ body {
 }
 
 .page {
-  width: min(100%, 620px);
-  max-width: 620px;
+  width: min(100%, 1100px);
+  max-width: 1100px;
   display: flex;
   flex-direction: column;
   gap: 22px;
@@ -210,31 +210,67 @@ button:active,
 }
 
 .table-wrapper {
-  overflow-x: auto;
+  overflow-x: visible;
 }
 
 .simple-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 360px;
+  min-width: 0;
+  table-layout: fixed;
 }
 
 .simple-table th,
 .simple-table td {
-  padding: 16px 18px;
+  padding: 10px 12px;
   border: 1px solid rgba(23, 30, 64, 0.12);
   text-align: left;
+  vertical-align: top;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .simple-table th {
   background: rgba(255, 255, 255, 0.88);
   color: #3f4365;
   font-weight: 700;
+  font-size: 0.92rem;
 }
 
 .simple-table td {
   background: rgba(255, 255, 255, 0.96);
   color: #161828;
+  font-size: 0.92rem;
+}
+
+.table-subtitle {
+  display: block;
+  margin-top: 2px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: #6b6f8a;
+}
+
+.center-cell {
+  text-align: center;
+}
+
+.status-cell {
+  text-align: center;
+  font-weight: 700;
+}
+
+.status-deny {
+  color: #d32f2f;
+}
+
+.status-grant {
+  color: #1976d2;
+}
+
+.note-cell {
+  font-size: 0.88rem;
+  line-height: 1.45;
 }
 
 @media (max-width: 640px) {

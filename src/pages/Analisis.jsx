@@ -41,12 +41,12 @@ export default function Analisis() {
 
           <section className="section-block">
             <h2>Himpunan User</h2>
-            <p>U = {'{Admin, Dosen, Mahasiswa, Guest}'}</p>
+            <p>s = {'{Admin, Dosen, Mahasiswa}'}</p>
           </section>
 
           <section className="section-block">
             <h2>Himpunan Status</h2>
-            <p>S = {'{Aktif, Tidak Aktif}'}</p>
+            <p>r = {'{Aktif, Tidak Aktif}'}</p>
           </section>
 
           {/* Bagian Kombinatorika Password */}
@@ -78,40 +78,34 @@ export default function Analisis() {
 
           {/* Bagian Tabel Kebenaran Sesuai Foto */}
           <section className="section-block">
-            <h2>4.3 Tabel Kebenaran Validasi</h2>
+            <h2>Tabel Kebenaran Validasi</h2>
             <p style={{ marginBottom: "16px", fontSize: "0.95rem", color: "#555" }}>
               Berikut adalah tabel kebenaran lengkap sistem LogicAuth untuk 4 variabel utama (p, q, r, s) dengan 2<sup>4</sup> = 16 kombinasi:
             </p>
             
-            <div className="table-wrapper" style={{ overflowX: "auto" }}>
-              <table className="simple-table" style={{ width: "100%", borderCollapse: "collapse" }}>
+            <div className="table-wrapper">
+              <table className="simple-table">
                 <thead>
-                  <tr style={{ backgroundColor: "#20547a", color: "#ffffff" }}>
-                    <th style={{ padding: "8px", border: "1px solid #ddd" }}>p<br/><span style={{ fontWeight: "normal", fontSize: "0.85rem" }}>(Username)</span></th>
-                    <th style={{ padding: "8px", border: "1px solid #ddd" }}>q<br/><span style={{ fontWeight: "normal", fontSize: "0.85rem" }}>(Password Hash)</span></th>
-                    <th style={{ padding: "8px", border: "1px solid #ddd" }}>r<br/><span style={{ fontWeight: "normal", fontSize: "0.85rem" }}>(is_active)</span></th>
-                    <th style={{ padding: "8px", border: "1px solid #ddd" }}>s (Role Valid)</th>
-                    <th style={{ padding: "8px", border: "1px solid #ddd" }}>LOGIN_SUCCESS</th>
-                    <th style={{ padding: "8px", border: "1px solid #ddd" }}>Keterangan</th>
+                  <tr>
+                    <th>p<br/><span className="table-subtitle">(Username)</span></th>
+                    <th>q<br/><span className="table-subtitle">(Password Hash)</span></th>
+                    <th>r<br/><span className="table-subtitle">(is_active)</span></th>
+                    <th>s<br/><span className="table-subtitle">(Role Valid)</span></th>
+                    <th>LOGIN_SUCCESS</th>
+                    <th>Keterangan</th>
                   </tr>
                 </thead>
                 <tbody>
                   {truthTableData.map((row, index) => (
                     <tr key={index} style={{ backgroundColor: index % 2 === 0 ? "#f9f9f9" : "#ffffff" }}>
-                      <td style={{ padding: "8px", textAlign: "center", border: "1px solid #ddd" }}>{row.p}</td>
-                      <td style={{ padding: "8px", textAlign: "center", border: "1px solid #ddd" }}>{row.q}</td>
-                      <td style={{ padding: "8px", textAlign: "center", border: "1px solid #ddd" }}>{row.r}</td>
-                      <td style={{ padding: "8px", textAlign: "center", border: "1px solid #ddd" }}>{row.s}</td>
-                      <td style={{ 
-                        padding: "8px", 
-                        textAlign: "center", 
-                        border: "1px solid #ddd",
-                        fontWeight: "bold",
-                        color: row.status === "DENY" ? "#d32f2f" : "#1976d2"
-                      }}>
+                      <td className="center-cell">{row.p}</td>
+                      <td className="center-cell">{row.q}</td>
+                      <td className="center-cell">{row.r}</td>
+                      <td className="center-cell">{row.s}</td>
+                      <td className={`status-cell ${row.status === "DENY" ? "status-deny" : "status-grant"}`}>
                         {row.status}
                       </td>
-                      <td style={{ padding: "8px", border: "1px solid #ddd", fontSize: "0.9rem" }}>{row.note}</td>
+                      <td className="note-cell">{row.note}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -119,7 +113,6 @@ export default function Analisis() {
             </div>
 
             <p style={{ marginTop: "16px", fontSize: "0.95rem", lineHeight: "1.5" }}>
-              Dari tabel kebenaran di atas, terlihat bahwa LOGIN_SUCCESS hanya bernilai True pada satu kondisi dari 16 kemungkinan, yaitu ketika keempat proposisi p, q, r, dan s semuanya bernilai True. Ini menunjukkan bahwa konjungsi (AND) dalam validasi login sangat ketat dan merupakan pilihan yang tepat untuk keamanan.
             </p>
           </section>
         </div>
